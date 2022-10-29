@@ -1,0 +1,15 @@
+modelo ContaBancaria
+inicio modelo
+    caracteres nomeCorrentista;
+    real saldo;
+    logico contaEspecial;
+
+    abreconta(caracteres nome, real deposito, logico especial)
+    ininicio
+        nomeCorrentista = nome;
+        se(deposito < 0)
+            deposito = 0;
+        saldo = deposito;
+        contaEspecial = especial;
+    fim
+fim modelo

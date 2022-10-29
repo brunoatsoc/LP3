@@ -1,0 +1,81 @@
+modelo LivroLivraria
+inicio modelo
+    logico commomCover;
+    inteiro cep;
+    inteiro stockNumber;
+    inteiro quantityBuy;
+    real bookValue;
+    caracteres buyerName;
+
+    defineCover(inteiro isCommom)
+    inicio
+        se(isCommom == 0)
+            bookValue = bookValue + 10;
+    fim
+
+    defineValue(real value)
+    inicio
+        bookValue = value;
+    fim
+
+    defineName(caracteres name)
+    inicio
+        buyerName = name;
+    fim
+
+    defineCep(caractere dCep)
+    inicio
+        dCep = removeCaractere("-", "");
+        cep = converteEmInteiro(dCep);
+    fim
+
+    defineStock(inteiro quantity)
+    inicio
+        stockNumber = quantity;
+    fim
+
+    //Calcula o frete com base no Cep digitado
+    calculateShipping()
+    inicio
+        se((cep >= 1000000) E (cep <= 39999999))
+            retorne bookValue + 25;
+        senao se((cep >= 40000000) E (cep <= 65999999))
+            retorne bookValue + 10;
+        senao se((cep >= 66000000) E (cep <= 79999999))
+            retorne bookValue + 40;
+        senao se((cep >= 80000000) E (cep <= 99999999))
+            retorne bookValue + 50;
+        senao
+            imprime("Entrada Invalida!!\n");
+            sair(-1);
+            retorne -1;
+    fim
+
+    //Vende unidades do livro e tira o que foi vendido do estoque
+    sellUnits(inteiro quantity)
+    ininicio
+        se(stockNumber - quantity <= 0)
+            imprime("Não é possivel vender essa quatidade\nTemos %d no estoque!", stockNumber);
+            retorne stockNumber;
+        quantityBuy = quantity;
+        stockNumber = stockNumber - quantity;
+        retorne stockNumber;
+    fim
+
+    //Imprime as informações da compra
+    printInformation(inteiro numberInstallments)
+    inicio
+        se(numberInstallments <= 0)
+            numberInstallments = 1;
+
+        real value = calculateShipping();
+
+        imprime("RELATÓRIO DA VENDA\n\n");
+        imprime("Cliente: %s\n", buyerName);
+        imprime("Capa comum: %s\n", commomCover ? "Sim": "Não");
+        imprime("Valor da Compra: %f\n", value * quantityBuy);
+        imprime("Parcelas: %d X %f\n", numberInstallments, value * quantityBuy / numberInstallments);
+        imprime("Entrgar no CEP: %d\n", cep);
+        imprime("Quantidade: %d\n", quantityBuy);
+    fim
+fim modelo
