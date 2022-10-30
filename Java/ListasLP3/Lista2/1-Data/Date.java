@@ -31,7 +31,7 @@ public class Date{
     //Verifica se a data está correta
     private boolean dateVerification(int initDay, int initMonth, int initYear){
         if(initMonth >= 1 && initMonth <= 12){
-            if((initMonth == 2) && ((initDay >= 1) && (initDay <= 29)) && ((initYear % 4 == 0) && (initYear % 100 == 0) && (initYear % 400 == 0))){
+            if((initMonth == 2) && ((initDay >= 1) && (initDay <= 29)) && ((initYear % 4 == 0) || (initYear % 100 == 0) && (initYear % 400 == 0))){
                 return true;
             }else if((initMonth == 2) && ((initDay >= 1) && (initDay <= 28))){
                 return true;
