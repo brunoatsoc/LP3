@@ -1,12 +1,13 @@
 public class Data{
+    //Atributos
     private int day, month, year;
 
     //Atualiza a data
-    public void setDate(int initDay, int initMonth, int initYear){
-        if(dateVerification(initDay, initMonth, initYear)){
-            day = initDay;
-            month = initMonth;
-            year = initYear;
+    public void setDate(int day, int month, int year){
+        if(dateVerification(day, month, year)){
+            this.day = day;
+            this.month = month;
+            this.year = year;
         }else{
             System.out.printf("Invalid Date!\n");
             System.exit(-1);
@@ -15,41 +16,51 @@ public class Data{
 
     //Retorna o dia
     public int getDay(){
-        return day;
+        return this.day;
     }
 
     //Retorna o mês
     public int getMonth(){
-        return month;
+        return this.month;
     }
 
     //Retorna o ano
     public int getYear(){
-        return year;
+        return this.year;
     }
 
     //Verifica se a data está correta
-    private boolean dateVerification(int initDay, int initMonth, int initYear){
-        if(initMonth >= 1 && initMonth <= 12){
-            if((initMonth == 2) && ((initDay >= 1) && (initDay <= 29)) && ((initYear % 4 == 0) && (initYear % 100 == 0) && (initYear % 400 == 0))){
+    private boolean dateVerification(int day, int month, int year){
+        if((month >= 1) && (month  <= 12)){
+            if(month == 2){
+                if((day >= 1) && (day <= 29) && (isLeapYear(year))){
+                    return true;
+                }else if((day >= 1) && (day <= 28)){
+                    return true;
+                }
+                return false;
+            }else if((day >= 1) && (day <= 30) && ((month % 2 == 0) && (month != 8))){
                 return true;
-            }else if((initMonth == 2) && ((initDay >= 1) && (initDay <= 28))){
-                return true;
-            }else if(((initDay >= 1) && (initDay <= 31)) && ((initMonth % 2 != 0) || (initMonth == 8))){
-                return true;
-            }else if((initDay >= 1) && (initDay <= 30) && (initMonth % 2 == 0) && (initMonth != 8)){
+            }else if((day >= 1) && (day <= 31)){
                 return true;
             }
-            return false;
+        }
+        return false;
+    }
+
+    //Verifica se o ano é bissexto
+    private boolean isLeapYear(int year){
+        if((year % 4 == 0) && ((year % 100 == 0) && (year % 400 == 0))){
+            return true;
         }
         return false;
     }
 
     //Inicializa o dia, mês e ano com valores padrão
     public void initializeDate(){
-        day = getDay();
-        month = getMonth();
-        year = getYear();
+        this.day = getDay();
+        this.month = getMonth();
+        this.year = getYear();
     }
 
     //Imprime data
@@ -61,6 +72,6 @@ public class Data{
     public void printDateExtensive(){
         String m[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
 
-        System.out.printf("%d de %s de %d\n", day, m[getMonth() - 1], year);
+        System.out.printf("%d de %s de %d\n", this.day, m[getMonth() - 1], this.year);
     }
 }
