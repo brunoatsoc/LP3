@@ -38,18 +38,19 @@ public class Time{
     }
 
     public void addSeconds(int secs){
-        if(!validateMinOrSec(secs)){
+        if(secs < 0){
             System.out.printf("Invalid seconds!!\n");
+            System.exit(-1);
         }
         this.seg = this.seg + secs;
-        if(this.seg > 60){
-            this.seg = this.seg - 60;
-            this.min = this.min + 1;
-            if(this.min > 60){
-                this.min = this.min - 60;
-                this.hora = this.hora + 1;
-                if(this.hora > 24){
-                    this.hora = 1;
+        if(this.seg >= 60){
+            this.min = this.min + this.seg / 60;
+            this.seg = this.seg % 60;
+            if(this.min >= 60){
+                this.hora = this.hora + this.min / 60;
+                this.min = this.min % 60;
+                if(this.hora >= 24){
+                    this.hora = this.hora % 24;
                 }
             }
         }

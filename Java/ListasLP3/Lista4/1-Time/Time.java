@@ -27,8 +27,55 @@ public class Time{
         this.seg = t.getSecond();
     }
 
-    public addTime(int s){
-        this(s, );
+    public void addTime(int s){
+        if(s < 0){
+            System.out.printf("Invalid seconds!!\n");
+            System.exit(-1);
+        }
+        this.seg = this.seg + s;
+        if(this.seg >= 60){
+            this.min = this.min + this.seg / 60;
+            this.seg = this.seg % 60;
+            if(this.min >= 60){
+                this.hora = this.hora + this.min / 60;
+                this.min = this.min % 60;
+                if(this.hora >= 24){
+                    this.hora = this.hora % 24;
+                }
+            }
+        }
+    }
+
+    public void addTime(int m, int s){
+        if((m < 0) || (s < 0)){
+            System.out.println("Error in addTime, invalide minute!!");
+            System.exit(-1);
+        }
+        this.addTime(s);
+        this.min = this.min + m;
+        if(this.min >= 60){
+            this.hora = this.hora + this.min / 60;
+            this.min = this.min % 60;
+            if(this.hora >= 24){
+                this.hora = this.hora % 24;
+            }
+        }
+    }
+
+    public void addTime(int h, int m, int s){
+        if((h < 0) || (m < 0) || (s < 0)){
+            System.out.println("Error in addTime, invalide minute!!");
+            System.exit(-1);
+        }
+        this.addTime(m, s);
+        this.hora = this.hora + h;
+        if(this.hora >= 24){
+            this.hora = this.hora % 24;
+        }
+    }
+
+    public void addTime(Time obj){
+        this.addTime(obj.getHour(), obj.getMinute(), obj.getSecond());
     }
 
     public boolean isAm(){
@@ -59,13 +106,13 @@ public class Time{
             System.exit(-1);
         }
         this.seg = this.seg + secs;
-        if(this.seg > 60){
+        if(this.seg >= 60){
             this.seg = this.seg - 60;
             this.min = this.min + 1;
-            if(this.min > 60){
+            if(this.min >= 60){
                 this.min = this.min - 60;
                 this.hora = this.hora + 1;
-                if(this.hora > 24){
+                if(this.hora >= 24){
                     this.hora = 1;
                 }
             }
