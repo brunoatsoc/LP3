@@ -58,7 +58,7 @@ public class Data{
 
     //Retorna a quantidade de dias até uma data
     public int howManyDays(Data outraData){
-        this(outraData.getDay(), outraData.getMonth(), outraData.getYear());
+        return this.howManyDays(outraData.getDay(), outraData.getMonth(), outraData.getYear());
     }
     
     public int howManyDays(int day, int month, int year){
@@ -67,7 +67,7 @@ public class Data{
             float diffMonth1 = 12.0f - month;
             float diffMonth2 = this.month - 1.0f + 1;
             float days = (diffYears * 365.25f) + ((diffMonth1 + diffMonth2) * 365.25f / 12);
-            return (int)days;
+            return (int)(-days);
         }else{
             float diffYears = (float)mode(year - this.year) - 1;
             float diffMonth1 = 12.0f - this.month;
