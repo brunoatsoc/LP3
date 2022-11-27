@@ -84,4 +84,20 @@ public class Ponto2D{
     public static float distance(Ponto2D p1, Ponto2D p2){
         return (float)(Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY())));
     }
+
+    public static float distanceOrigin(Ponto2D p){
+        return (float)(Math.sqrt((p.getX() - 0) * (p.getX() - 0) + (p.getY() - 0) * (p.getY() - 0));;
+    }
+
+    public static int quadrant(Ponto2D p){
+        if(p.getX() > 0 && p.getY() > 0){
+            return 1;
+        }else if(p.getX() < 0 && p.getY() > 0){
+            return 2;
+        }else if(p.getX() < 0 && p.getY() < 0){
+            return 3;
+        }else{
+            return 4;
+        }
+    }
 }

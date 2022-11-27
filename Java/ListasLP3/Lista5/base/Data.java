@@ -179,4 +179,64 @@ public class Data{
 
         return this.day + " de " + m[getMonth() - 1] + " de " + this.getYear() + "\n";
     }
+
+    public static int howManyDaysUntilEndYear(Data d){
+        int[] dayM = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int sum = 0;
+
+        if(Data.isBisexto(d)){
+            dayM[1] = 29;
+        }
+
+        for(int i = d.getMonth(); i <= 12; i++){
+            sum = sum + dayM[i];
+        }
+
+        return sum - d.getDay();
+    }
+
+    private static boolean isBisexto(Data d){
+        if((d.getYear() % 4 == 0) && ((d.getYear() % 100 == 0) && (d.getYear() % 400 == 0))){
+            return true;
+        }
+        return false;
+    }
+
+    public static int howManyDaysUntilNextMonth(Data d){
+        int[] dayM = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if(Data.isBisexto(d)){
+            dayM[1] = 29;
+        }
+
+        return dayM[d.getMonth()] - d.getDay();
+    }
+
+    public static String dayOfWeek2(Data dt){
+        int d = dt.getDay();
+        int m = dt.getMonth();
+        int y = dt.getYear();
+        int k = 0;
+        String[] daysWeek = {"Sabado", "Domingo","Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"};
+
+        if(m == 1){
+            k = d + 2 * 13 + (3 * (13 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
+        }else if(m == 2){
+            k = d + 2 * 14 + (3 * (14 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
+        }else{
+            k = d + 2 * m + (3 * (m + 1) / 5) + y + (y / 4) - (y / 100) + (y / 400) + 2;
+        }
+
+        return daysWeek[k % 7];
+    }
+
+    public static String dayToPrintLong(Data d){
+        String m[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+
+        return d.getDay() + " de " + m[d.getMonth() - 1] + " de " + d.getYear();
+    }
+
+    public static String dayToPrintShort(Data d){
+        return d.getDay() + "/" + d.getMonth() + "/" + d.getYear();
+    }
 }
