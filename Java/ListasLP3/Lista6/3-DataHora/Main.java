@@ -9,6 +9,9 @@ public class Main{
         Hora hora2 = new Hora(13, 45, 20);
         DataHora d2 = new DataHora(data2, hora2);
 
-        System.out.println(d1.);
+        System.out.println(d1.toString());
+        System.out.println(d1.equals(d2));
+        System.out.println(d1.isGreather(d2));
+        System.out.println(d1.isLower(d2));
     }
 }
