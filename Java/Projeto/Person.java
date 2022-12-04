@@ -1,5 +1,7 @@
+import java.io.Serializable;
+
 //Classe pessoa que estende a classe Comparable para implementar o compareTo
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person>, Serializable{
     //Atributos da classe
     private int age; //Idade da pessoa
     private String name; //Node da pessoa

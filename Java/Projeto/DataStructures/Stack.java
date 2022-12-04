@@ -32,4 +32,4 @@ public class Stack<T extends Comparable<T>> extends List<T>{
         setRearList(temp);
         return temp;
     }//Fim pop
-}
+}//Fim classe Stack
