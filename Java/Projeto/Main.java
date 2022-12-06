@@ -32,9 +32,12 @@ public class Main{
         l.printList();*/
 
         //Teste da Fila
-        Person p1 = new Person(22, "Bruno");
-        Person p2 = new Person(19, "Ticiana");
-        Person p3 = new Person(19, "Flávia");
+        Data dt = new Data(10, 3, 2000);
+        Data dt1 = new Data(13, 12, 2002);
+        Data dt2 = new Data(8, 12, 2002);
+        Person p1 = new Person(22, "Bruno", "123456789-12", dt);
+        Person p2 = new Person(19, "Ticiana", "122133144-32", dt1);
+        Person p3 = new Person(19, "Flávia", "999999999-99", dt2);
         Queue<Person> q = new Queue<Person>(p1);
 
         q.enqueue(p2);

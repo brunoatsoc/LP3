@@ -1,15 +1,19 @@
 import java.io.Serializable;
 
 //Classe pessoa que implementa a interface Comparable para comparar objetos e a interface Serializable para manipular arquivos
-public class Person implements Comparable<Person>, Serializable{
+public class Person implements Comparable<Person>, Serializable, PersonInterface{
     //Atributos da classe
     private int age; //Idade da pessoa
     private String name; //Node da pessoa
+    private String cpf; //CPF da pessoa
+    private Data date; //Objetp para a data da pessoa
 
     //Construtor
-    public Person(int age, String name){
+    public Person(int age, String name, String cpf, Data date){
         this.age = age;
         this.name = name;
+        this.cpf = cpf;
+        this.date = date;
     }//Fim
 
     //Metodo getAge para obter a idade da pessoa
@@ -21,6 +25,31 @@ public class Person implements Comparable<Person>, Serializable{
     public String getName(){
         return this.name;
     }//Fim getName
+
+    //Metodo getCpf para obter o cpf da pessoa
+    public String getCpf(){
+        return this.cpf;
+    }//Fim getCpf
+
+    //Metodo getDayBirthDay para obter o dia do nascimento da pessoa
+    public int getDayBirthDay(){
+        return this.date.getDay();
+    }//Fim getDayBirthDay
+
+    //Metodo getMonthBirthDay para obter o mês do nascimento da pessoa
+    public int getMonthBirthDay(){
+        return this.date.getMonth();
+    }//Fim getMonthBirthDay
+
+    //Metodo getYearBirthDay para obter o ano do nascimento da pessoa
+    public int getYearBirthDay(){
+        return this.date.getYear();
+    }//Fim getYearBirthDay
+
+    //Metodo getBirthDay para obter o objeto com a data do nascimento da pessoa
+    public Data getBirthDay(){
+        return this.date;
+    }//Fim getBirthDay
 
     //Metodo setInfo para atializar uma informação
     public void setInfo(int age, String name){
@@ -41,7 +70,8 @@ public class Person implements Comparable<Person>, Serializable{
     }//Fim compareTo
 
     //Metodo toString para imprimir os atributos do metodo
+    @Override
     public String toString(){
-        return "Person data\nAge: " + age + "\nName: " + name + "\n";
+        return "Person data\nAge: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + date.toStringLong() + "\n";
     }//Fim compareTo
 }//Fim classe Person
