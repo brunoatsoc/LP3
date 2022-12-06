@@ -1,4 +1,6 @@
-import DataStructures.*;
+import DataStructures.List;
+import DataStructures.Stack;
+import DataStructures.Queue;
 import java.io.*;
 
 //Teste das estruturas de dados

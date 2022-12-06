@@ -6,7 +6,7 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
     private int age; //Idade da pessoa
     private String name; //Node da pessoa
     private String cpf; //CPF da pessoa
-    private Data date; //Objetp para a data da pessoa
+    private Data date; //Objeto para a data de nascimento da pessoa
 
     //Construtor
     public Person(int age, String name, String cpf, Data date){
@@ -56,6 +56,20 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
         this.age = age;
         this.name = name;
     }//Fim setInfo
+
+    //Valida informações
+    @Override
+    public boolean validateInfo(int age, String nome, String cpf, Data d){
+        if(age < 0){
+            return false;
+        }else if(nome == null){
+            return false;
+        }else if(cpf == null){
+            return false;
+        }else{
+            return true;
+        }
+    }//Fim validateInfo
 
     //Metodo que sobrescreve o metodo compareTo da classe Comparable
     @Override

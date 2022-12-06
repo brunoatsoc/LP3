@@ -1,113 +1,70 @@
-public class Data{
-    //Atributos
-    private int day, month, year;
-    private static final String[] MONTHS = {"Janeiro", "Fevereiro", "Março", "Abril",
-    "Maio", "Junho", "Julho", "Agosto",
-    "Setembro", "Outubro", "Novembro", "Dezembro"};
+import java.util.Calendar;
 
-    //Construtor
+//Classe Data
+public class Data implements DateInterface{
+    //Atributos
+    private int day, month, year; //Data, Mês e Ano
+    private int currentDay, currentMonth, currentYear;
+    String[] MONTHS = {"Janeiro", "Fevereiro", "Março", "Abril",
+    "Maio", "Junho", "Julho", "Agosto",
+    "Setembro", "Outubro", "Novembro", "Dezembro"}; //Meses do ano
+
+    //Construtores
+    //Construtor com 3 parametros
     public Data(int day, int month, int year){
         setDate(day, month, year);
-    }
+        setCurrentDate();
+    }//Fim
 
+    //Construtor sem parametros(chama o construtor com 3 parametros)
     public Data(){
-        this.day = 1;
-        this.month = 1;
-        this.year = 1970;
-    }
+        this(1, 1, 1970);
+    }//Fim
 
+    //Construtor que recebe um objeto Data(chama o construtor com 3 parametros)
     public Data(Data date){
         this(date.getDay(), date.getMonth(), date.getYear());
+    }//Fim
+    //Fim construtores
+
+    //Metodos get
+    //Retorna o dia
+    public int getDay(){
+        return this.day;
+    }//Fim getDay
+
+    //Retorna o mês
+    public int getMonth(){
+        return this.month;
+    }//Fim getMonth
+
+    //Retorna o ano
+    public int getYear(){
+        return this.year;
+    }//Fim getYear
+
+    //Retorna o dia atual
+    public int getCurrentDay(){
+        return this.currentDay;
     }
+    //Fim getCurrentDay
 
-    //Retorna verdadeiro se a data passada por paramentro é anterior a data do objeto
-    public boolean isPrevious(Data outraData){
-        if(outraData.getYear() < this.year){
-            return true;
-        }else if(outraData.getYear() > this.year){
-            return false;
-        }else{
-            if(outraData.getMonth() < this.month){
-                return true;
-            }else if(outraData.getMonth() > this.month){
-                return false;
-            }else{
-                if(outraData.getDay() < this.day){
-                    return true;
-                }
-                return false;
-            }
-        }
+    //Retorna o mês atual
+    public int getCurrentMonth(){
+        return this.currentMonth;
     }
+    //Fim getCurrentMonth
 
-    public boolean isPrevious(int day, int month, int year){
-        if(year < this.year){
-            return true;
-        }else if(year > this.year){
-            return false;
-        }else{
-            if(month < this.month){
-                return true;
-            }else if(month > this.month){
-                return false;
-            }else{
-                if(day < this.day){
-                    return true;
-                }
-                return false;
-            }
-        }
+    //Retorna o ano atual
+    public int getCurrentYear(){
+        return this.currentYear;
     }
+    //Fim getCurrentYear
+    //Fim metodos get
 
-    //Retorna a quantidade de dias até uma data
-    public int howManyDays(Data outraData){
-        return this.howManyDays(outraData.getDay(), outraData.getMonth(), outraData.getYear());
-    }
-    
-    public int howManyDays(int day, int month, int year){
-        if(isPrevious(day, month, year)){
-            float diffYears = (float)mode(year - this.year) - 1;
-            float diffMonth1 = 12.0f - month;
-            float diffMonth2 = this.month - 1.0f + 1;
-            float days = (diffYears * 365.25f) + ((diffMonth1 + diffMonth2) * 365.25f / 12);
-            return (int)(-days);
-        }else{
-            float diffYears = (float)mode(year - this.year) - 1;
-            float diffMonth1 = 12.0f - this.month;
-            float diffMonth2 = month - 1.0f + 1;
-            float days = (diffYears * 365.25f) + ((diffMonth1 + diffMonth2) * 365.25f / 12);
-            return (int)days;
-        }
-    }
-
-    //Retorna o valor absoluto de um número
-    private int mode(int n){
-        if(n < 0){
-            return (-1 * n);
-        }
-        return n;
-    }
-
-    //Retorna o dia da semana
-    public String dayOfWeek(Data date){
-        int d = date.getDay();
-        int m = date.getMonth();
-        int y = date.getYear();
-        int k = 0;
-        String[] daysWeek = {"Sabado", "Domingo","Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"};
-
-        if(m == 1){
-            k = d + 2 * 13 + (3 * (13 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
-        }else if(m == 2){
-            k = d + 2 * 14 + (3 * (14 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
-        }else{
-            k = d + 2 * m + (3 * (m + 1) / 5) + y + (y / 4) - (y / 100) + (y / 400) + 2;
-        }
-
-        return daysWeek[k % 7];
-    }
-
+    //Metodos set
     //Atualiza a data
+    @Override
     public void setDate(int day, int month, int year){
         if(dateVerification(day, month, year)){
             this.day = day;
@@ -117,22 +74,17 @@ public class Data{
             System.out.printf("Invalid Date!\n");
             System.exit(-1);
         }
-    }
+    }//Fim setDate
 
-    //Retorna o dia
-    public int getDay(){
-        return this.day;
-    }
-
-    //Retorna o mês
-    public int getMonth(){
-        return this.month;
-    }
-
-    //Retorna o ano
-    public int getYear(){
-        return this.year;
-    }
+    //Define a hora atual(obtem da classe Calendar)
+    @Override
+    public void setCurrentDate(){
+        Calendar cal = Calendar.getInstance();
+        this.currentDay = cal.get(Calendar.DATE);
+        this.currentMonth = cal.get(Calendar.MONTH) + 1;
+        this.currentYear = cal.get(Calendar.YEAR);
+    }//Fim setCurrentDate
+    //Fim metodos set
 
     //Verifica se a data está correta
     private boolean dateVerification(int day, int month, int year){
@@ -151,40 +103,104 @@ public class Data{
             }
         }
         return false;
-    }
+    }//Fim dateVerification
+
+    //Metodo isPrevious com 3 parametros, Retorna verdadeiro se a data passada por paramentro é anterior a data do objeto
+    @Override
+    public boolean isPrevious(int day, int month, int year){
+        if(year < this.year){
+            return true;
+        }else if(year > this.year){
+            return false;
+        }else{
+            if(month < this.month){
+                return true;
+            }else if(month > this.month){
+                return false;
+            }else{
+                if(day < this.day){
+                    return true;
+                }
+                return false;
+            }
+        }
+    }//Fim isPrevious
+
+    //Retorna verdadeiro se a data passada por paramentro é anterior a data do objeto
+    @Override
+    public boolean isPrevious(Data outraData){
+        return this.isPrevious(outraData.getDay(), outraData.getMonth(), outraData.getYear());
+    }//Fim isPrevious
+    
+    //Retorna a quantidade de dias até uma data
+    @Override
+    public int howManyDays(int day, int month, int year){
+        if(isPrevious(day, month, year)){
+            float diffYears = (float)mode(year - this.year) - 1;
+            float diffMonth1 = 12.0f - month;
+            float diffMonth2 = this.month - 1.0f + 1;
+            float days = (diffYears * 365.25f) + ((diffMonth1 + diffMonth2) * 365.25f / 12);
+            return (int)(-days);
+        }else{
+            float diffYears = (float)mode(year - this.year) - 1;
+            float diffMonth1 = 12.0f - this.month;
+            float diffMonth2 = month - 1.0f + 1;
+            float days = (diffYears * 365.25f) + ((diffMonth1 + diffMonth2) * 365.25f / 12);
+            return (int)days;
+        }
+    }//Fim howManyDays
+
+    //Retorna a quantidade de dias até uma data, aceita um objeto do tipo data(Chama o metodo com 3 parametros)
+    @Override
+    public int howManyDays(Data outraData){
+        return this.howManyDays(outraData.getDay(), outraData.getMonth(), outraData.getYear());
+    }//Fim howManyDays
+
+    //Retorna o valor absoluto de um número
+    private static int mode(int n){
+        if(n < 0){
+            return (-1 * n);
+        }
+        return n;
+    }//Fim mode
+
+    //Retorna o dia da semana
+    @Override
+    public String dayOfWeek(Data date){
+        int d = date.getDay();
+        int m = date.getMonth();
+        int y = date.getYear();
+        int k = 0;
+        String[] daysWeek = {"Sabado", "Domingo","Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"};
+
+        if(m == 1){
+            k = d + 2 * 13 + (3 * (13 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
+        }else if(m == 2){
+            k = d + 2 * 14 + (3 * (14 + 1) / 5) + (y - 1) + ((y - 1) / 4) - ((y - 1) / 100) + ((y - 1) / 400) + 2;
+        }else{
+            k = d + 2 * m + (3 * (m + 1) / 5) + y + (y / 4) - (y / 100) + (y / 400) + 2;
+        }
+
+        return daysWeek[k % 7];
+    }//Fim dayOfWeek
 
     //Verifica se o ano é bissexto
-    private boolean isLeapYear(int year){
+    private static boolean isLeapYear(int year){
         if((year % 4 == 0) && ((year % 100 == 0) && (year % 400 == 0))){
             return true;
         }
         return false;
-    }
+    }//Fim isLeapYear
 
-    //Inicializa o dia, mês e ano com valores padrão
-    public void initializeDate(){
-        this.day = getDay();
-        this.month = getMonth();
-        this.year = getYear();
-    }
-
-    //Imprime data
-    public void printDate(){
-        System.out.printf("%d/%d/%d\n", day, month, year);
-    }
-
-    //Imprime data por extenso
-    public void printDateExtensive(){
-        String m[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
-
-        System.out.printf("%d de %s de %d\n", this.day, m[getMonth() - 1], this.year);
-    }
-
+    //Metodo toString para retornar a data para impressão
+    @Override
     public String toStringShort(){
         return day + "/" + month + "/" + year;
-    }
+    }//Fim toString
 
+    //Metodo toStringLong para retornar da data por extenso para impressão
+    @Override
     public String toStringLong(){
         return day + " de " + MONTHS[month - 1] + " de " + year;
-    }
-}
+    }//Fim toStringLong
+}//Fim classe Data

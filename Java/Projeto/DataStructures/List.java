@@ -2,22 +2,7 @@
 package DataStructures;
 
 //Classe generica para uma lista encadeada
-public class List<T extends Comparable<T>>{
-    //classe Node
-    private static class Node<T>{
-        //Atributos da classe Node
-        T data; //Objeto generico que o nó armazena
-        Node<T> next; //Nó para o proximo objeto
-        Node<T> prev; //Nó para o ojeto anterior
-
-        //Construtor que recebe um dado generico
-        Node(T data){
-            this.data = data;
-            this.next = null;
-            this.prev = null;
-        }//fim
-    }//Fim classe Node
-
+public class List<T extends Comparable<T>> implements ListInterface<T>{
     //Atributos da classe List
     private int size = 0; //Guarda o tamanho da lista
     private Node<T> head; //Primeiro item da lista
@@ -120,6 +105,7 @@ public class List<T extends Comparable<T>>{
     }//Fim insertInPosition
 
     //Remove um item da frente da lista
+    @Override
     public T removeFront(){
         if(head == null){
             System.out.printf("Error in removeFront, list is empty!!\n\n");
@@ -146,6 +132,7 @@ public class List<T extends Comparable<T>>{
     }//Fim removeFront
 
     //Remove um item do final da lista
+    @Override
     public T removeRear(){
         if(head == null){
             System.out.printf("Error in removeFront, list is empty!!\n\n");
@@ -172,6 +159,7 @@ public class List<T extends Comparable<T>>{
     }//Fim removeRear
 
     //Remove um item em uma posição especifica na lista
+    @Override
     public T removeInPosition(int position){
         if(head == null){
             System.out.printf("Error in removeFront, list is empty!!\n\n");
@@ -203,25 +191,8 @@ public class List<T extends Comparable<T>>{
         }
     }//Fim removeInPosition
 
-    //Imprime a lista
-    public void printList(){
-        if(head == null){
-            System.out.printf("Error in printList, list is empty!!\n\n");
-            System.exit(-1);
-        }
-        printNode(this.head, this.head);
-    }//Fim printList
-
-    private void printNode(Node<T> h1, Node<T> h2){
-        if(h1.next == h2){
-            System.out.println(h1.data.toString());
-            return;
-        }
-        System.out.println(h1.data.toString());
-        printNode(h1.next, h2);
-    }//Fim printNode
-
-   //Remove um item especifico da lista
+    //Remove um item especifico da lista
+    @Override
     public T removeItem(T d){
         Node<T> item = findNode(head, d);
 
@@ -238,6 +209,25 @@ public class List<T extends Comparable<T>>{
             return temp;
         }
     }//Fim removeItem
+
+    //Imprime a lista
+    public void printList(){
+        if(head == null){
+            System.out.printf("Error in printList, list is empty!!\n\n");
+            System.exit(-1);
+        }
+        printNode(this.head, this.head);
+    }//Fim printList
+
+    //Imprime cada nó da lista
+    private void printNode(Node<T> h1, Node<T> h2){
+        if(h1.next == h2){
+            System.out.println(h1.data.toString());
+            return;
+        }
+        System.out.println(h1.data.toString());
+        printNode(h1.next, h2);
+    }//Fim printNode
 
     //Procura um nó na lista
     private Node<T> findNode(Node<T> node, T d){
