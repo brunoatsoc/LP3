@@ -1,7 +1,9 @@
 import DataStructures.List;
 import DataStructures.Stack;
 import DataStructures.Queue;
+import DataStructures.Tree;
 import java.io.*;
+import java.sql.Struct;
 
 //Teste das estruturas de dados
 public class Main{
@@ -33,7 +35,7 @@ public class Main{
         l.removeItem(a);
         l.printList();*/
 
-        //Teste da Fila
+        /*//Teste da Fila
         Data dt = new Data(10, 3, 2000);
         Data dt1 = new Data(13, 12, 2002);
         Data dt2 = new Data(8, 12, 2002);
@@ -47,7 +49,24 @@ public class Main{
 
         System.out.println(q.dequeue());
         System.out.println(q.dequeue());
-        System.out.println(q.dequeue());
+        System.out.println(q.dequeue());*/
+
+        /*//Teste arvore binaria e imprimir arvore em ordem
+        Tree<Student> t = new Tree<Student>();
+        Data dt = new Data(10, 3, 2000);
+        Data dt1 = new Data(13, 12, 2002);
+        Data dt2 = new Data(8, 12, 2002);
+        Data dt3 = new Data(21, 10, 2007);
+        Student p1 = new Student(22, "Bruno", "123456789-12", dt, 202121126, "Ciência da Computação", 650f);
+        Student p2 = new Student(19, "Ticiana", "122133144-32", dt1, 121445125, "Direito", 700f);
+        Student p3 = new Student(19, "Flávia", "999999999-99", dt2, 202121134, "Ciência da Computação", 700f);
+        Student p4 = new Student(15, "Clara", "123456789-10", dt3, 123456733, "Medicina", 800);
+
+        t.insertTree(p1);
+        t.insertTree(p2);
+        t.insertTree(p3);
+        t.insertTree(p4);
+        t.printTreeAll();*/
     }
 
     /*//Teste de manipulação de aquivos

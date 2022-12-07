@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
-//Classe pessoa que implementa a interface Comparable para comparar objetos e a interface Serializable para manipular arquivos
-public class Person implements Comparable<Person>, Serializable, PersonInterface{
+//Classe pessoa que implementa a interface Serializable para manipular arquivos e a classe PersonInterface
+public class Person implements Serializable, PersonInterface{
     //Atributos da classe
     private int age; //Idade da pessoa
     private String name; //Node da pessoa
@@ -10,10 +10,15 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
 
     //Construtor
     public Person(int age, String name, String cpf, Data date){
-        this.age = age;
-        this.name = name;
-        this.cpf = cpf;
-        this.date = date;
+        if(validateInfo(age, name, cpf, date)){
+            this.age = age;
+            this.name = name;
+            this.cpf = cpf;
+            this.date = date;
+        }else{
+            System.out.println("Error detting information!!");
+            System.exit(-1);
+        }
     }//Fim
 
     //Metodo getAge para obter a idade da pessoa
@@ -52,9 +57,16 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
     }//Fim getBirthDay
 
     //Metodo setInfo para atializar uma informação
-    public void setInfo(int age, String name){
-        this.age = age;
-        this.name = name;
+    public void setInfo(int age, String name, String cpf, Data date){
+        if(validateInfo(age, name, cpf, date)){
+            this.age = age;
+            this.name = name;
+            this.cpf = cpf;
+            this.date = date;
+        }else{
+            System.out.println("Error detting information!!");
+            System.exit(-1);
+        }
     }//Fim setInfo
 
     //Valida informações
@@ -73,7 +85,7 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
 
     //Metodo que sobrescreve o metodo compareTo da classe Comparable
     @Override
-    public int compareTo(Person p){
+    public int compare(Person p){
         if((p.getAge() == this.age) && p.getName().equals(this.name)){
             return 0;
         }else if(p.getAge() > this.age){
@@ -81,7 +93,7 @@ public class Person implements Comparable<Person>, Serializable, PersonInterface
         }else{
             return 1;
         }
-    }//Fim compareTo
+    }//Fim compare
 
     //Metodo toString para imprimir os atributos do metodo
     @Override
