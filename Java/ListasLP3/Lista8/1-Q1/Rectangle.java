@@ -7,6 +7,10 @@ public class Rectangle extends Shape2D{
         this.y3 = y3;
         this.x4 = x4;
         this.y4 = y4;
+        if(!verificaRetangulo()){
+            System.out.println("Erro, não é um retangulo!!");
+            System.exit(-1);
+        }
     }
 
     public Rectangle(){
@@ -31,5 +35,54 @@ public class Rectangle extends Shape2D{
 
     public float getY4(){
         return this.y4;
+    }
+
+    public void setX3(float x3){
+        if(verificaRetangulo()){
+            this.x3 = x3;
+        }
+    }
+
+    public void setX4(float x4){
+        if(verificaRetangulo()){
+            this.x4 = x4;
+        }
+    }
+
+    public void setY3(float y3){
+        if(verificaRetangulo()){
+            this.y3 = y3;
+        }
+    }
+
+    public void setY4(float y4){
+        if(verificaRetangulo()){
+            this.y4 = y4;
+        }
+    }
+
+    private boolean verificaRetangulo(){
+        float d1 = super.calculaDistancia(super.getX1(), super.getY1(), super.getX2(), super.getY2());
+        float d2 = super.calculaDistancia(getX3(), getY3(), getX4(), getY4());
+        
+        if(d1 == d2){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        return "Rectangle\n" + super.toString() + "X3 = " + x3 + "\nY3 = " + y3 + "\nX4 = " + x4 + "\nY4 = " + y4 + "\n";
+    }
+
+    @Override
+    public float calculaArea(){
+        return super.calculaDistancia(getX1(), getY1(), getX2(), getY2()) * super.calculaDistancia(getX2(), getY2(), getX3(), getY3());
+    }
+
+    @Override
+    public float calculaPerimetro(){
+        return 2 * super.calculaDistancia(super.getX1(), super.getY1(), super.getX2(), super.getY2()) + 2 * super.calculaDistancia(getX3(), getY3(), getX4(), getY4());
     }
 }

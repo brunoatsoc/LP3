@@ -25,6 +25,6 @@ public class Circle extends Shape2D{
 
     @Override
     public float calculaPerimetro(){
-        return 2 * PI * calculaDistancia(getX1(), getY1(), getX2(), getY2());
+        return 2 * PI * super.calculaDistancia(getX1(), getY1(), getX2(), getY2());
     }
 }
