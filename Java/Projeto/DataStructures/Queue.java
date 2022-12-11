@@ -8,6 +8,11 @@ public class Queue<T extends Comparable<T>> extends List<T>{
         setRearList(data);
     }//Fim
 
+    //Construtor sem parametro
+    public Queue(){
+        setFrontList(null);
+    }//Fim
+
     //Metodo enqueue que coloca um objeto no final da fila
     public void enqueue(T data){
         setRearList(data);

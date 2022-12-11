@@ -7,7 +7,7 @@ import java.sql.Struct;
 
 //Teste das estruturas de dados
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InterruptedException{
         /*//Teste da pilha
         Person p = new Person(22, "Bruno");
         Stack<Person> s = new Stack<Person>(p);
@@ -57,17 +57,61 @@ public class Main{
         Data dt1 = new Data(13, 12, 2002);
         Data dt2 = new Data(8, 12, 2002);
         Data dt3 = new Data(21, 10, 2007);
-        Student p1 = new Student(22, "Bruno", "123456789-12", dt, 202121126, "Ciência da Computação", 650f);
-        Student p2 = new Student(19, "Ticiana", "122133144-32", dt1, 121445125, "Direito", 700f);
-        Student p3 = new Student(19, "Flávia", "999999999-99", dt2, 202121134, "Ciência da Computação", 700f);
-        Student p4 = new Student(15, "Clara", "123456789-10", dt3, 123456733, "Medicina", 800);
+        Student p1 = new Student(22, "Bruno", "123456789-12", dt, 202121126, 650f, "Ciência da Computação");
+        Student p2 = new Student(19, "Ticiana", "122133144-32", dt1, 121445125, 700f, "Direito");
+        Student p3 = new Student(19, "Flávia", "999999999-99", dt2, 202121134, 700f, "Ciência da Computação");
+        Student p4 = new Student(15, "Clara", "123456789-10", dt3, 123456733, 800f, "Medicina");
 
-        t.insertTree(p1);
+        Student[] std = new Student[4];
+        std[0] = p1;
+        std[1] = p2;
+        std[2] = p3;
+        std[3] = p4;
+
+        sort(std, 0, 3);
+
+        for(int i = 0; i < 4; i++){
+            System.out.println(std[i].toString());
+        }*/
+
+        /*t.insertTree(p1);
         t.insertTree(p2);
         t.insertTree(p3);
         t.insertTree(p4);
         t.printTreeAll();*/
+        University u = new University();
+
+        while(true){
+            u.menu();
+        }
     }
+
+    /*static int partition(Student students[], int first, int last){
+        Student pivor = students[last];
+        int i = first - 1;
+
+        for(int j = first; j < last; j++){
+            if(students[j].getGrade() <= pivor.getGrade()){
+                i++;
+                Student temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+        Student temp = students[i + 1];
+        students[i + 1] = students[last];
+        students[last] = temp;
+
+        return i + 1;
+    }
+
+    static void sort(Student students[], int first, int last){
+        if(first < last){
+            int pi = partition(students, first, last);
+            sort(students, first, pi - 1);
+            sort(students, pi + 1, last);
+        }
+    }*/
 
     /*//Teste de manipulação de aquivos
     public static void main(String[] args) throws Exception{

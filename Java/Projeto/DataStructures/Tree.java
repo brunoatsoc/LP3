@@ -4,6 +4,7 @@ package DataStructures;
 public class Tree<T extends Comparable<T>>{
     //Atributos da classe
     private NodeTree<T> root;
+    private int size;
 
     //Construtor
     public Tree(){
@@ -15,12 +16,18 @@ public class Tree<T extends Comparable<T>>{
         insertTree(data);
     }//Fim
 
+    //Pega o tamanho da arvore
+    public int getSizeTree(){
+        return this.size;
+    }//Fim getSizeTree
+
     //Cria nó da arvore
     private NodeTree<T> createNode(NodeTree<T> node, T i){
         node.data = i;
         node.father = null;
         node.left = null;
         node.right = null;
+        ++size;
         return node;
     }//Fim createNode
 

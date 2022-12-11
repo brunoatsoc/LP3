@@ -21,6 +21,11 @@ public class Person implements Serializable, PersonInterface{
         }
     }//Fim
 
+    //Construtor sem parametro
+    public Person(){
+        this(0, "Sem nome", "***********", null);
+    }//Fim
+
     //Metodo getAge para obter a idade da pessoa
     public int getAge(){
         return this.age;
@@ -98,6 +103,6 @@ public class Person implements Serializable, PersonInterface{
     //Metodo toString para imprimir os atributos do metodo
     @Override
     public String toString(){
-        return "Person data\nAge: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + date.toStringLong() + "\n";
+        return "Age: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + date.toStringLong() + "\n";
     }//Fim compareTo
 }//Fim classe Person
