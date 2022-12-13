@@ -78,16 +78,12 @@ public class Course{
 //=========================================================================================
 
     public int removeStudent(Student std, int last){
-        for(int i = 0; i <= last; i++){
+        for(int i = 0; students[i] != null; i++){
             if(students[i].compareTo(std) == 0){
                 students[i] = null;
-            }
-
-            if(students[i].compareTo(std) != 0){
+            }else if(students[i].compareTo(std) != 0){
                 queue.enqueue(students[i]);
-            }
-
-            if((students[i].compareTo(std) != 0) && (i == last)){
+            }else if((students[i] == null) && (i == last)){
                 System.out.printf("Estudante não encontrado!!\n\n");
                 return last;
             }
@@ -103,14 +99,14 @@ public class Course{
         File file = new File(this.nameCourse + ".txt");
 
         try{
-            ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream("Files/" + file));
 
             for(int i = 0; i < vacancy; i++){
                 oos.writeObject(students[i]);
             }
 
             File file1 = new File(this.nameCourse + "waitingList.txt");
-            ObjectOutputStream oos1  = new ObjectOutputStream(new FileOutputStream(file1));
+            ObjectOutputStream oos1  = new ObjectOutputStream(new FileOutputStream("Files/" + file1));
 
             for(int i = 0; i < waitingList; i++){
                 oos1.writeObject(waitingStudents[i]);
@@ -127,7 +123,7 @@ public class Course{
         int j = 0;
         File file = new File(this.nameCourse + ".txt");
         try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Files/" + file));
 
             for(int i = 0; i < vacancy; i++){
                 students[i] = (Student)ois.readObject();
@@ -139,7 +135,7 @@ public class Course{
             ois.close();
 
             File file1 = new File(this.nameCourse + "waitingList.txt");
-            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream(file1));
+            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("Files/" + file1));
 
             for(int i = 0; i < vacancy; i++){
                 waitingStudents[i] = (Student)ois1.readObject();

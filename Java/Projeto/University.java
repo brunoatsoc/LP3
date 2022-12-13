@@ -339,7 +339,7 @@ public class University{
     public void saveFileProfessors(){
         File file = new File("professors.txt");
         try{
-            ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream("Files/" + file));
 
             for(int i = 0; i < qProfessorVacacy; i++){
                 oos.writeObject(professor[i]);
@@ -354,7 +354,7 @@ public class University{
     public void readFilesProfessors() throws Exception{
         File file = new File("professors.txt");
         try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Files/" + file));
 
             for(int i = 0; i < qProfessorVacacy; i++){
                 professor[i] = (Professor)ois.readObject();
