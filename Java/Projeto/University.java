@@ -275,16 +275,12 @@ public class University{
 //=====================================================================================================
 
     public int removeProfessor(Professor std){
-        for(int i = 0; i <= counterP; i++){
+        for(int i = 0; professor[i] != null; i++){
             if(professor[i].compareTo(std) == 0){
                 professor[i] = null;
-            }
-
-            if(professor[i].compareTo(std) != 0){
+            }else if(professor[i].compareTo(std) != 0){
                 queueProfessor.enqueue(professor[i]);
-            }
-
-            if((professor[i].compareTo(std) != 0) && (i == counterP)){
+            }else if((professor[i] == null) || (i == counterP)){
                 System.out.printf("Professor não encontrado!!\n\n");
                 return counterP;
             }

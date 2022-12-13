@@ -83,7 +83,7 @@ public class Course{
                 students[i] = null;
             }else if(students[i].compareTo(std) != 0){
                 queue.enqueue(students[i]);
-            }else if((students[i] == null) && (i == last)){
+            }else if((students[i] == null) || (i == last)){
                 System.out.printf("Estudante não encontrado!!\n\n");
                 return last;
             }
