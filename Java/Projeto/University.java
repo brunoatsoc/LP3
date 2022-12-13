@@ -1,6 +1,6 @@
 import DataStructures.*;
 import java.util.Scanner;
-import java.io.IOException;
+import java.io.*;
 
 public class University{
     private static int counter1 = 0;
@@ -18,18 +18,18 @@ public class University{
 
     private Queue<Professor> queueProfessor = new Queue<Professor>();
 
-    private Course agronomia = new Course();
-    private Course bioMedcina = new Course();
-    private Course biologia = new Course();
-    private Course cienciaComputacao = new Course();
-    private Course direito = new Course();
-    private Course engenharia = new Course();
-    private Course medicina = new Course();
-    private Course medVet = new Course();
+    private Course agronomia = new Course("agronomia");
+    private Course bioMedcina = new Course("bioMedcina");
+    private Course biologia = new Course("biologia");
+    private Course cienciaComputacao = new Course("cienciaComputacao");
+    private Course direito = new Course("direito");
+    private Course engenharia = new Course("engenharia");
+    private Course medicina = new Course("medicina");
+    private Course medVet = new Course("medVet");
 
 //=========================================================================================================
 
-    public void menu() throws IOException, InterruptedException{
+    public int menu() throws Exception{
         System.out.printf("BEM VINDO(A) AO UESC!!\n\n");
         System.out.printf("[1] PARA VER OS CURSOS DA UNIVERSIDADE\n");
         System.out.printf("[2] PARA VER OS PROFESSORES DA UNIVERSIADE\n");
@@ -47,28 +47,27 @@ public class University{
         switch(escolha){
             case 1:
                 printCourses();
-                break;
+                return 1;
             case 2:
                 printProfessors();
-                break;
+                return 1;
             case 3:
-                //AGRONOMIA\nBIOMEDICINA\nBIOLOGIA\nCIÊNCIA DA COMPUTAÇÃO\nDIREITO\nENGENHARIA\nMEDICINA\nMEDICINA VETERINÁRIA
                 System.out.printf("ESCOLHA O CURSO PARA VER OS ALUNOS\n\n");
-                System.out.printf("[1] PARA AGRONOMIA\n[2] PARA BIOMEDICINA\n[3] BIOLOGIA\n[4] PARA CIÊNCIA DA COMPUTAÇÃO\n[5] DIREITO\n[6] ENGENHARIA\n[7] MEDICINA\n[8] PARA MEDICINA VETRINÁRIA\n\n");
+                System.out.printf("[1] PARA AGRONOMIA\n[2] PARA BIOMEDICINA\n[3] PARA BIOLOGIA\n[4] PARA CIÊNCIA DA COMPUTAÇÃO\n[5] PARA DIREITO\n[6] PARA ENGENHARIA\n[7] PARA MEDICINA\n[8] PARA MEDICINA VETRINÁRIA\n\n");
                 System.out.printf("");
                 Scanner s = new Scanner(System.in);
                 int scl = s.nextInt();
                 printStudentsCourses(scl);
-                break;
+                return 1;
             case 4:
                 enrollStudent();
-                break;
+                return 1;
             case 5:
                 enrollProfessor();
-                break;
+                return 1;
             case 6:
                 removeAluno();
-                break;
+                return 1;
             case 7:
                 Scanner prf = new Scanner(System.in);
 
@@ -97,12 +96,14 @@ public class University{
         
                 Professor p = new Professor(age, name, cpf, date, registrationNumber, matter, course);
                 removeProfessor(p);
-                break;
+                return 1;
             case 8:
-                System.exit(0);
-                break;
+                saveFileProfessors();
+                saveFileStudents();
+                return -1;
             default:
                 System.out.printf("Erro, entrada invalida!!\n\n");
+                return 1;
         }
     }
 
@@ -331,7 +332,63 @@ public class University{
                 medVet.printStudents();
                 break;
             default:
-                System.out.printf("Erro, opçãode curso invalida!!\n\n");
+                System.out.printf("Erro, opção de curso invalida!!\n\n");
         }
+    }
+
+    public void saveFileProfessors(){
+        File file = new File("professors.txt");
+        try{
+            ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream(file));
+
+            for(int i = 0; i < qProfessorVacacy; i++){
+                oos.writeObject(professor[i]);
+            }
+
+            oos.close();
+        }catch(IOException error){
+            System.out.printf("Erro, %s\n", error.getMessage());
+        }
+    }
+
+    public void readFilesProfessors() throws Exception{
+        File file = new File("professors.txt");
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+
+            for(int i = 0; i < qProfessorVacacy; i++){
+                professor[i] = (Professor)ois.readObject();
+                if(professor[i] == null){
+                    break;
+                }
+            }
+            ois.close();
+        }catch(IOException error1){
+            System.out.printf("Error, %s\n", error1.getMessage());
+        }catch(ClassNotFoundException error2){
+            System.out.printf("Error, %s\n", error2.getMessage());
+        }
+    }
+
+    public void readFileStudents() throws Exception{
+        counter1 = agronomia.readStudentsFiles();
+        counter2 = bioMedcina.readStudentsFiles();
+        counter3 = biologia.readStudentsFiles();
+        counter4 = cienciaComputacao.readStudentsFiles();
+        counter5 = direito.readStudentsFiles();
+        counter6 = engenharia.readStudentsFiles();
+        counter7 = medicina.readStudentsFiles();
+        counter8 = medVet.readStudentsFiles();
+    }
+
+    public void saveFileStudents() throws Exception{
+        agronomia.saveFilesCourse();
+        bioMedcina.saveFilesCourse();
+        biologia.saveFilesCourse();
+        cienciaComputacao.saveFilesCourse();
+        direito.saveFilesCourse();
+        engenharia.saveFilesCourse();
+        medicina.saveFilesCourse();
+        medVet.saveFilesCourse();
     }
 }

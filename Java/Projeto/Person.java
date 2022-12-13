@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 //Classe pessoa que implementa a interface Serializable para manipular arquivos e a classe PersonInterface
-public class Person implements Serializable, PersonInterface{
+public class Person implements Serializable ,PersonInterface{
     //Atributos da classe
     private int age; //Idade da pessoa
     private String name; //Node da pessoa
@@ -103,6 +103,6 @@ public class Person implements Serializable, PersonInterface{
     //Metodo toString para imprimir os atributos do metodo
     @Override
     public String toString(){
-        return "Age: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + date.toStringLong() + "\n";
+        return "Age: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + this.date.toString() + "\n";
     }//Fim compareTo
 }//Fim classe Person

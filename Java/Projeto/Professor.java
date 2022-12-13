@@ -1,5 +1,7 @@
+import java.io.Serializable;
+
 //Classe para o Professor
-public class Professor extends Person implements Comparable<Professor>{
+public class Professor extends Person implements Serializable, Comparable<Professor>{
     //Atributos da classe
     private long registrationNumber; //Numero de registro do professor
     private String matter; //Materias que o professor quer lecionar

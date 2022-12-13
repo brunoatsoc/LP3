@@ -1,5 +1,7 @@
+import java.io.Serializable;
+
 //Calees para o Estudante que implementa a classe Comparable para comparar dois objetos
-public class Student extends Person implements Comparable<Student>{
+public class Student extends Person implements Serializable, Comparable<Student>{
     //Atributos da classe
     private long registrationNumber; //Numero de matricula
     private float grade; //Nota do aluno no Enem

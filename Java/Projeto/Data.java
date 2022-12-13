@@ -1,7 +1,9 @@
+//import java.io.Serializable;
+import java.io.Serializable;
 import java.util.Calendar;
 
 //Classe Data
-public class Data implements DateInterface{
+public class Data implements Serializable ,DateInterface{
     //Atributos
     private int day, month, year; //Data, Mês e Ano
     private int currentDay, currentMonth, currentYear;
@@ -200,7 +202,7 @@ public class Data implements DateInterface{
 
     //Metodo toStringLong para retornar da data por extenso para impressão
     @Override
-    public String toStringLong(){
+    public String toString(){
         return day + " de " + MONTHS[month - 1] + " de " + year;
     }//Fim toStringLong
 }//Fim classe Data

@@ -8,5 +8,5 @@ public interface DateInterface{
     int howManyDays(Data outraData);
     public String dayOfWeek(Data date);
     String toStringShort();
-    String toStringLong();
+    String toString();
 }//Fim insterface
