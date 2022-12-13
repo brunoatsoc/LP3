@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 //Calees para o Estudante que implementa a classe Comparable para comparar dois objetos
+//E também implementa a inteface Serializable para salvar e ler arquivos
 public class Student extends Person implements Serializable, Comparable<Student>{
     //Atributos da classe
     private long registrationNumber; //Numero de matricula
@@ -67,6 +68,6 @@ public class Student extends Person implements Serializable, Comparable<Student>
     //Retorna uma string para ser impressa com todas as imformações da classe
     @Override
     public String toString(){
-        return "Dados do estudante\n\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "\n";
+        return "Dados do estudante\n\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "Curso: " + this.course + "\n";
     }//Fim toString
 }//Fim classe Student

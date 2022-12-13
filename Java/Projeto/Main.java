@@ -5,12 +5,15 @@ import DataStructures.Tree;
 import java.io.*;
 import java.sql.Struct;
 
-//Teste das estruturas de dados
+//Claasse principal(que tem o metodo main)
 public class Main{
+    //Metodo principal
+    //Esse metodo chama inicia lendo os arquivos que tem as informações dos lunos e professores
     public static void main(String[] args) throws Exception{
         University u = new University();
         int op = 1;
 
+        //ratamento de excessões
         try{
             u.readFilesProfessors();
             u.readFileStudents();
@@ -19,10 +22,9 @@ public class Main{
                 op = u.menu();
             }
         }catch(FileNotFoundException ex){
-            System.out.printf("aaaaaa");
             while(op != -1){
                 op = u.menu();
             }
         }
-    }
-}
+    }//Fim main
+}//Fim classe Main

@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
-//Classe para o Professor
+//Classe para o Professor que implementa a interface Comparable para comparar dois objetos
+//E também a interface Serializable para ler e escrever arquivos
 public class Professor extends Person implements Serializable, Comparable<Professor>{
     //Atributos da classe
     private long registrationNumber; //Numero de registro do professor
@@ -82,20 +83,19 @@ public class Professor extends Person implements Serializable, Comparable<Profes
         }
     }//Fim compareTo
 
-    @Override
-    public String toString(){
-        return "Dados do(a) professor(a)\n\n" + super.toString() + "Número de registro: " + registrationNumber + "\nMateria que o(a) professor(a) leciona: " + matter + "\nCurso que leciona: " + course + "\n";
-    }
-
+    //Metodo para saber se um nome vem antes do outro
     private int alphabetical(String n){
+        //Pega os tres primeiros carateres da String que é passada por parametro
         int a = n.charAt(0);
         int b = n.charAt(1);
         int c = n.charAt(2);
 
+        //Pega a String com o nome da pessoa e guarda os tres primeiros caracteres
         int x = getName().charAt(0);
         int y = getName().charAt(1);
         int z = getName().charAt(2);
 
+        //Faz as comparações
         if(x < a){
             return -1;
         }else if(x == a){
@@ -114,6 +114,12 @@ public class Professor extends Person implements Serializable, Comparable<Profes
             }
         }else{
             return 2;
-        }
-    }
+        }//Fim comparações
+    }//Fim aphabetical
+
+    //Metodo toString para retornar os dados do professor para serem impressos
+    @Override
+    public String toString(){
+        return "Dados do(a) professor(a)\n\n" + super.toString() + "Número de registro: " + registrationNumber + "\nMateria que o(a) professor(a) leciona: " + matter + "\nCurso que leciona: " + course + "\n";
+    }//Fim toString
 }//Fim da classe Professor

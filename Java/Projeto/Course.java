@@ -2,25 +2,23 @@ import DataStructures.*;
 import java.io.*;
 import java.io.IOException;
 
-import javax.imageio.IIOException;
-
 //Classe para os cursos da universidade
 public class Course{
-    private static final int vacancy = 20; //Número de vagas constante
-    private static final int waitingList = 30;
+    //Atributos da classe
+    private static final int vacancy = 20; //Número de vagas
+    private static final int waitingList = 30; //Tamnho da lista de espera dos alunos
     private Student[] students = new Student[vacancy]; //Vetor para os estudantes da classe
-    private Student[] waitingStudents = new Student[waitingList];
-    private int contWL = 0;
+    private Student[] waitingStudents = new Student[waitingList]; //Vetor para a lista de espera
+    private int contWL = 0; //Contador da lista de espera
 
-    private Queue<Student> queue = new Queue<Student>();
+    private Queue<Student> queue = new Queue<Student>(); //Fila para os alunos
 
-    private String nameCourse;
+    private String nameCourse; //Nome do curso
 
+    //Contrutor qu aceita o nome do curso como parametro(o nome do curso é para salvar os dados em um arquivo com o nome do curso)
     public Course(String nameCourse){
         this.nameCourse = nameCourse;
-    }
-
-//=========================================================================================
+    }//Fim
 
     //Imprime todos os estudantes do curso
     public void printStudents(){
@@ -29,9 +27,7 @@ public class Course{
         }
     }//Fim printStudents
 
-//=========================================================================================
-
-    //Coloca um estudante nesse curso
+    //Coloca um estudante no vetotor
     public void setStudent(Student s, int i){
         if(i > vacancy){
             System.out.printf("Total de vagas do curso preenchido\nO aluno será colocado na lista de espera\n\n");
@@ -44,8 +40,8 @@ public class Course{
         sort(students, 0, i);
     }//Fim setStudent
 
-//=========================================================================================
-
+    //Metodos para ordenar um vetor, QuickSort
+    //Metodo partition
     int partition(Student students[], int first, int last){
         Student pivor = students[last];
         int i = first - 1;
@@ -63,20 +59,18 @@ public class Course{
         students[last] = temp;
 
         return i + 1;
-    }
+    }//Fim partition
 
-//=========================================================================================
-
+    //Metodo sort
     public void sort(Student students[], int first, int last){
         if(first < last){
             int pi = partition(students, first, last);
             sort(students, first, pi - 1);
             sort(students, pi + 1, last);
         }
-    }
+    }//Fim sort
 
-//=========================================================================================
-
+    //Remove um estudante e usa uma flila para organizar o vetor
     public int removeStudent(Student std, int last){
         for(int i = 0; students[i] != null; i++){
             if(students[i].compareTo(std) == 0){
@@ -93,7 +87,7 @@ public class Course{
             students[i] = queue.dequeue();
         }
         return last - 1;
-    }
+    }//removeStudent
 
     public void saveFilesCourse(){
         File file = new File(this.nameCourse + ".txt");

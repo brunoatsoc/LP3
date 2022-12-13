@@ -200,9 +200,9 @@ public class Data implements Serializable ,DateInterface{
         return day + "/" + month + "/" + year;
     }//Fim toString
 
-    //Metodo toStringLong para retornar da data por extenso para impressão
+    //Metodo toString para retornar da data por extenso para impressão
     @Override
     public String toString(){
         return day + " de " + MONTHS[month - 1] + " de " + year;
-    }//Fim toStringLong
+    }//Fim toString
 }//Fim classe Data
