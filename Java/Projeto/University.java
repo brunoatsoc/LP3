@@ -23,14 +23,14 @@ public class University{
     private Queue<Professor> queueProfessor = new Queue<Professor>();
 
     //Objetos para os cursos da universidade
-    private Course agronomia = new Course("agronomia");
-    private Course bioMedcina = new Course("bioMedcina");
-    private Course biologia = new Course("biologia");
-    private Course cienciaComputacao = new Course("cienciaComputacao");
-    private Course direito = new Course("direito");
-    private Course engenharia = new Course("engenharia");
-    private Course medicina = new Course("medicina");
-    private Course medVet = new Course("medVet");
+    private Course agronomia = new Course("Agronomia");
+    private Course bioMedcina = new Course("BioMedicina");
+    private Course biologia = new Course("Biologia");
+    private Course cienciaComputacao = new Course("CiênciaDaComputação");
+    private Course direito = new Course("Direito");
+    private Course engenharia = new Course("Engenharia");
+    private Course medicina = new Course("Medicina");
+    private Course medVet = new Course("MedicinaVeterinária");
 
     //Metodo mara o menú
     public int menu() throws Exception{
@@ -393,6 +393,7 @@ public class University{
             for(int i = 0; i < qProfessorVacacy; i++){
                 professor[i] = (Professor)ois.readObject();
                 if(professor[i] == null){
+                    counterP = i;
                     break;
                 }
             }

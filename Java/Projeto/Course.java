@@ -20,10 +20,18 @@ public class Course{
         this.nameCourse = nameCourse;
     }//Fim
 
-    //Imprime todos os estudantes do curso
+    //Imprime todos os estudantes do curso e todos os alunos da lista de espera
     public void printStudents(){
+        //Imprime os estudantes matriculados
+        System.out.printf("Estudadntes matriculados em %s\n\n", this.nameCourse.toUpperCase());
         for(int i = 0; i < vacancy; i++){
             System.out.println(students[i]);
+        }
+
+        //Imprime os estudantes na lista de espera
+        System.out.printf("\n\nEstudantes na lista de espera de %s\n\n", this.nameCourse.toUpperCase());
+        for(int i = 0; i < waitingList; i++){
+            System.out.println(waitingStudents[i]);
         }
     }//Fim printStudents
 
@@ -32,43 +40,13 @@ public class Course{
         if(i > vacancy){
             System.out.printf("Total de vagas do curso preenchido\nO aluno será colocado na lista de espera\n\n");
             waitingStudents[contWL] = s;
-            sort(students, 0, i);
+            sort(students, 0, contWL);
             ++contWL;
             return;
         }
         students[i] = s;
         sort(students, 0, i);
     }//Fim setStudent
-
-    //Metodos para ordenar um vetor, QuickSort
-    //Metodo partition
-    int partition(Student students[], int first, int last){
-        Student pivor = students[last];
-        int i = first - 1;
-
-        for(int j = first; j < last; j++){
-            if(students[j].getGrade() <= pivor.getGrade()){
-                i++;
-                Student temp = students[i];
-                students[i] = students[j];
-                students[j] = temp;
-            }
-        }
-        Student temp = students[i + 1];
-        students[i + 1] = students[last];
-        students[last] = temp;
-
-        return i + 1;
-    }//Fim partition
-
-    //Metodo sort
-    public void sort(Student students[], int first, int last){
-        if(first < last){
-            int pi = partition(students, first, last);
-            sort(students, first, pi - 1);
-            sort(students, pi + 1, last);
-        }
-    }//Fim sort
 
     //Remove um estudante e usa uma flila para organizar o vetor
     public int removeStudent(Student std, int last){
@@ -89,12 +67,14 @@ public class Course{
         return last - 1;
     }//removeStudent
 
+    //Metodo para salvar os dados dos alunos em um arquivo
     public void saveFilesCourse(){
         File file = new File(this.nameCourse + ".txt");
 
         try{
             ObjectOutputStream oos  = new ObjectOutputStream(new FileOutputStream("Files/" + file));
 
+            //Lê os dados do vetor e coloca no arquivo
             for(int i = 0; i < vacancy; i++){
                 oos.writeObject(students[i]);
             }
@@ -111,8 +91,9 @@ public class Course{
         }catch(IOException error){
             System.out.printf("Erro, %s\n", error.getMessage());
         }
-    }
+    }//Fim saveFilesCurse
 
+    //Metodo para lêr um arquivo e colocar no vetor
     public int readStudentsFiles(){
         int j = 0;
         File file = new File(this.nameCourse + ".txt");
@@ -145,5 +126,35 @@ public class Course{
             System.out.printf("Erro, %s\n", error2.getMessage());
         }
         return j;
-    }
+    }//Fim readStudentsFiles
+
+    //Metodos para ordenar um vetor, QuickSort
+    //Metodo partition
+    int partition(Student students[], int first, int last){
+        Student pivor = students[last];
+        int i = first - 1;
+
+        for(int j = first; j < last; j++){
+            if(students[j].getGrade() >= pivor.getGrade()){
+                i++;
+                Student temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+        Student temp = students[i + 1];
+        students[i + 1] = students[last];
+        students[last] = temp;
+
+        return i + 1;
+    }//Fim partition
+
+    //Metodo sort
+    public void sort(Student students[], int first, int last){
+        if(first < last){
+            int pi = partition(students, first, last);
+            sort(students, first, pi - 1);
+            sort(students, pi + 1, last);
+        }
+    }//Fim sort
 }//Fim classe Course

@@ -14,6 +14,7 @@ public class Student extends Person implements Serializable, Comparable<Student>
         if(validateInfo1(registrationNumber, grade)){
             this.registrationNumber = registrationNumber;
             this.grade = grade;
+            this.course = course;
         }else{
             System.out.println("Error detting information!!");
             System.exit(-1);
@@ -68,6 +69,6 @@ public class Student extends Person implements Serializable, Comparable<Student>
     //Retorna uma string para ser impressa com todas as imformações da classe
     @Override
     public String toString(){
-        return "Dados do estudante\n\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "Curso: " + this.course + "\n";
+        return "Dados do estudante\n\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "\nCurso: " + this.course + "\n";
     }//Fim toString
 }//Fim classe Student
