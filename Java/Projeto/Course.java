@@ -7,12 +7,10 @@ public class Course{
     //Atributos da classe
     private static final int vacancy = 20; //Número de vagas
     private static final int waitingList = 30; //Tamnho da lista de espera dos alunos
-    private Student[] students = new Student[vacancy]; //Vetor para os estudantes da classe
-    private Student[] waitingStudents = new Student[waitingList]; //Vetor para a lista de espera
     private int contWL = 0; //Contador da lista de espera
-
+    private Student[] students = new Student[vacancy + waitingList]; //Vetor para os estudantes da classe
+    //private Student[] waitingStudents = new Student[waitingList]; //Vetor para a lista de espera
     private Queue<Student> queue = new Queue<Student>(); //Fila para os alunos
-
     private String nameCourse; //Nome do curso
 
     //Contrutor qu aceita o nome do curso como parametro(o nome do curso é para salvar os dados em um arquivo com o nome do curso)
@@ -23,29 +21,32 @@ public class Course{
     //Imprime todos os estudantes do curso e todos os alunos da lista de espera
     public void printStudents(){
         //Imprime os estudantes matriculados
-        System.out.printf("Estudadntes matriculados em %s\n\n", this.nameCourse.toUpperCase());
+        System.out.printf("\n\nEstudadantes matriculados em %s\n\n", this.nameCourse.toUpperCase());
+
         for(int i = 0; i < vacancy; i++){
             System.out.println(students[i]);
         }
 
         //Imprime os estudantes na lista de espera
         System.out.printf("\n\nEstudantes na lista de espera de %s\n\n", this.nameCourse.toUpperCase());
-        for(int i = 0; i < waitingList; i++){
-            System.out.println(waitingStudents[i]);
+
+        for(int i = vacancy; i < waitingList + vacancy; i++){
+            System.out.println(students[i]);
         }
     }//Fim printStudents
 
     //Coloca um estudante no vetotor
     public void setStudent(Student s, int i){
         if(i > vacancy){
-            System.out.printf("Total de vagas do curso preenchido\nO aluno será colocado na lista de espera\n\n");
-            waitingStudents[contWL] = s;
+            System.out.printf("Total de vagas do curso preenchido\nO aluno poderá colocado na lista de espera\n\n");
+            students[contWL] = s;
             sort(students, 0, contWL);
             ++contWL;
             return;
         }
         students[i] = s;
         sort(students, 0, i);
+        ++contWL;
     }//Fim setStudent
 
     //Remove um estudante e usa uma flila para organizar o vetor
@@ -82,8 +83,8 @@ public class Course{
             File file1 = new File(this.nameCourse + "waitingList.txt");
             ObjectOutputStream oos1  = new ObjectOutputStream(new FileOutputStream("Files/" + file1));
 
-            for(int i = 0; i < waitingList; i++){
-                oos1.writeObject(waitingStudents[i]);
+            for(int i = vacancy; i < waitingList + vacancy; i++){
+                oos1.writeObject(students[i]);
             }
 
             oos1.close();
@@ -112,8 +113,8 @@ public class Course{
             File file1 = new File(this.nameCourse + "waitingList.txt");
             ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("Files/" + file1));
 
-            for(int i = 0; i < vacancy; i++){
-                waitingStudents[i] = (Student)ois1.readObject();
+            for(int i = vacancy; i < waitingList + vacancy; i++){
+                students[i] = (Student)ois1.readObject();
                 if(students[i] == null){
                     contWL = i;
                     break;

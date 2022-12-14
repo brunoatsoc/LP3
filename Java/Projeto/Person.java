@@ -21,6 +21,11 @@ public class Person implements Serializable ,PersonInterface{
         }
     }//Fim
 
+    //Construtor sem idade
+    public Person(String name, String cpf, Data date){
+        this(date.calculateAge(), name, cpf, date);
+    }//Fim
+
     //Construtor sem parametro
     public Person(){
         this(0, "Sem nome", "***********", null);
@@ -103,6 +108,6 @@ public class Person implements Serializable ,PersonInterface{
     //Metodo toString para imprimir os atributos do metodo
     @Override
     public String toString(){
-        return "Age: " + age + "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + this.date.toString() + "\n";
+        return "\nName: " + name + "\nCPF: " + cpf + "\nData de nascimento: " + this.date.toString();
     }//Fim compareTo
 }//Fim classe Person

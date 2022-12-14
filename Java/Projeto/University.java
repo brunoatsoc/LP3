@@ -4,7 +4,7 @@ import java.io.*;
 
 //Classe University pra representar a universidade
 public class University{
-    //Variaveis contadoras
+    //Variaveis contadoras para aquantidade de alunos do curso
     private static int counter1 = 0;
     private static int counter2 = 0;
     private static int counter3 = 0;
@@ -35,7 +35,7 @@ public class University{
     //Metodo mara o menú
     public int menu() throws Exception{
         //Imprime na tela as opções
-        System.out.printf("BEM VINDO(A) AO UESC!!\n\n");
+        System.out.printf("\n\nBEM VINDO(A) AO UNIVERSIDADE!!\n\n");
         System.out.printf("[1] PARA VER OS CURSOS DA UNIVERSIDADE\n");
         System.out.printf("[2] PARA VER OS PROFESSORES DA UNIVERSIADE\n");
         System.out.printf("[3] PARA VER OS ALUNOS DE ALGUM CURSO\n");
@@ -43,8 +43,8 @@ public class University{
         System.out.printf("[5] PARA FAZER A INSCRIÇÃO DE UM PROFESSOR\n");
         System.out.printf("[6] PARA REMOVER UM ALUNO DE UM CURSO\n");
         System.out.printf("[7] PARA REMOVER UM PROFESSOR\n");
-        System.out.printf("[8] PARA SAIR DO PROGRAMA\n");
-        System.out.printf("DIGITE SUA OPÇÃO\n");
+        System.out.printf("[8] PARA SAIR DO PROGRAMA\n\n");
+        System.out.printf("DIGITE SUA OPÇÃO: ");
 
         Scanner input = new Scanner(System.in);
         int escolha = input.nextInt();
@@ -58,8 +58,8 @@ public class University{
                 printProfessors();
                 return 1;
             case 3:
-                System.out.printf("ESCOLHA O CURSO PARA VER OS ALUNOS\n\n");
-                System.out.printf("[1] PARA AGRONOMIA\n[2] PARA BIOMEDICINA\n[3] PARA BIOLOGIA\n[4] PARA CIÊNCIA DA COMPUTAÇÃO\n[5] PARA DIREITO\n[6] PARA ENGENHARIA\n[7] PARA MEDICINA\n[8] PARA MEDICINA VETRINÁRIA\n\n");
+                System.out.printf("\n\nESCOLHA O CURSO PARA VER OS ALUNOS\n\n");
+                System.out.printf("[1] PARA AGRONOMIA\n[2] PARA BIOMEDICINA\n[3] PARA BIOLOGIA\n[4] PARA CIÊNCIA DA COMPUTAÇÃO\n[5] PARA DIREITO\n[6] PARA ENGENHARIA\n[7] PARA MEDICINA\n[8] PARA MEDICINA VETRINÁRIA\n\nDIGITE AQUI: ");
                 System.out.printf("");
                 Scanner s = new Scanner(System.in);
                 int scl = s.nextInt();
@@ -77,12 +77,12 @@ public class University{
             case 7:
                 Scanner prf = new Scanner(System.in);
 
+                System.out.printf("\n\nREMOVENDO PROFESSOR\n\n");
+
                 //Pega as indormações
                 System.out.printf("Digite as informações do(a) professor(a)\n\n");
-                System.out.printf("Digite a idade do(a) professor(a): ");
-                int age = prf.nextInt();
                 System.out.printf("Digite o nome do(a) professor(a): ");
-                prf.nextLine();
+                //prf.nextLine();
                 String name = prf.nextLine();
                 System.out.printf("Digite o CPF do(a) professor(a): ");
                 String cpf = prf.nextLine();
@@ -101,7 +101,7 @@ public class University{
                 System.out.printf("Digite o curso que o(a) professor(a) leciona: ");
                 String course = prf.nextLine();
         
-                Professor p = new Professor(age, name, cpf, date, registrationNumber, matter, course);
+                Professor p = new Professor(name, cpf, date, registrationNumber, matter, course);
                 removeProfessor(p);
                 return 1;
             case 8:
@@ -122,6 +122,8 @@ public class University{
     //Imprime professor por ordem alfabetica
     public void printProfessors(){
         Tree<Professor> prf = new Tree<Professor>(); //Árvore para os professores
+
+        System.out.printf("\n\nINFORMAÇÕES DOS PROFESSORES\n");
 
         for(int i = 0; i < counterP; i++){
             prf.insertTree(professor[i]);
@@ -167,13 +169,13 @@ public class University{
     public void enrollStudent(){
         Scanner std = new Scanner(System.in);
 
+        System.out.printf("\n\nCADASTRO DE ALUNO\n\n");
+
         System.out.printf("Digite as informações do(a) aluno(a)\n\n");
 
         //Pega as informações
-        System.out.printf("Digite a idade do(a) aluno(a): ");
-        int age = std.nextInt();
         System.out.printf("Digite o nome do(a) aluno(a): ");
-        std.nextLine();
+        //std.nextLine();
         String name = std.nextLine();
         System.out.printf("Digite o CPF do() aluno(a): ");
         String cpf = std.nextLine();
@@ -192,7 +194,7 @@ public class University{
         std.nextLine();
         String course = std.nextLine();
 
-        Student s = new Student(age, name, cpf, date, registrationNumber, grade, course);
+        Student s = new Student(name, cpf, date, registrationNumber, grade, course);
         String[] courses = {"Agronomia", "Biomedicina", "Biologia", "Ciência da Computação", "Direito", "Engenharia", "Medicina", "Medicina Veterinária"};
 
         if(courses[0].equals(course)){
@@ -228,12 +230,12 @@ public class University{
     public void enrollProfessor(){
         Scanner prf = new Scanner(System.in);
 
+        System.out.printf("\n\nCADASTRO DE PROFESSOR\n\n");
+
         //Pega as informações
         System.out.printf("Digite as informações do(a) professor(a)\n\n");
-        System.out.printf("Digite a idade do(a) professor(a): ");
-        int age = prf.nextInt();
         System.out.printf("Digite o nome do(a) professor(a): ");
-        prf.nextLine();
+        //prf.nextLine();
         String name = prf.nextLine();
         System.out.printf("Digite o CPF do(a) professor(a): ");
         String cpf = prf.nextLine();
@@ -252,7 +254,7 @@ public class University{
         System.out.printf("Digite o curso que o(a) professor(a) leciona: ");
         String course = prf.nextLine();
 
-        Professor p = new Professor(age, name, cpf, date, registrationNumber, matter, course);
+        Professor p = new Professor(name, cpf, date, registrationNumber, matter, course);
 
         setProfessor(p);
     }//Fim enrollProfessor
@@ -272,13 +274,13 @@ public class University{
         Scanner std = new Scanner(System.in);
         String[] courses = {"Agronomia", "Biomedicina", "Biologia", "Ciência da Computação", "Direito", "Engenharia", "Medicina", "Medicina Veterinária"};
 
+        System.out.printf("\n\nREMOVENDO ALUNO\n\n");
+
         System.out.printf("Digite as informações do(a) aluno(a)\n\n");
 
         //Pega as informações
-        System.out.printf("Digite a idade do(a) aluno(a): ");
-        int age = std.nextInt();
         System.out.printf("Digite o nome do(a) aluno(a): ");
-        std.nextLine();
+        //std.nextLine();
         String name = std.nextLine();
         System.out.printf("Digite o CPF do() aluno(a): ");
         std.nextLine();
@@ -298,7 +300,7 @@ public class University{
         std.nextLine();
         String course = std.nextLine();
 
-        Student s = new Student(age, name, cpf, date, registrationNumber, grade, course);
+        Student s = new Student(name, cpf, date, registrationNumber, grade, course);
 
         if(courses[0].equals(course)){
             counter1 =  agronomia.removeStudent(s, counter1);

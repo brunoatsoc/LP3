@@ -9,8 +9,8 @@ public class Student extends Person implements Serializable, Comparable<Student>
     private String course; //Curso que o aluno esclheu
 
     //Construtor
-    public Student(int age, String name, String cpf, Data date, long registrationNumber, float grade, String course){
-        super(age, name, cpf, date);
+    public Student(String name, String cpf, Data date, long registrationNumber, float grade, String course){
+        super(name, cpf, date);
         if(validateInfo1(registrationNumber, grade)){
             this.registrationNumber = registrationNumber;
             this.grade = grade;
@@ -23,7 +23,7 @@ public class Student extends Person implements Serializable, Comparable<Student>
 
     //Construtor sem parametro
     public Student(){
-        this(17, "Sem nome", "***********", null, 999l, 1, "Sem curso");
+        this("Sem nome", "***********", null, 999l, 1, "Sem curso");
     }//Fim
 
     //Obtem o número de matricula do estudante
@@ -69,6 +69,6 @@ public class Student extends Person implements Serializable, Comparable<Student>
     //Retorna uma string para ser impressa com todas as imformações da classe
     @Override
     public String toString(){
-        return "Dados do estudante\n\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "\nCurso: " + this.course + "\n";
+        return "Dados do(a) estudante\n" + super.toString() + "Numero de matricula: " + this.registrationNumber + "\nNota Enem: " + this.grade + "\nCurso: " + this.course + "\n";
     }//Fim toString
 }//Fim classe Student

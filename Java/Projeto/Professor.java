@@ -9,8 +9,8 @@ public class Professor extends Person implements Serializable, Comparable<Profes
     private String course; //Cursos que o professor que lecionar
 
     //Construtor
-    public Professor(int age, String name, String cpf, Data date, long registrationNumber, String matter, String course){
-        super(age, name, cpf, date);
+    public Professor(String name, String cpf, Data date, long registrationNumber, String matter, String course){
+        super(name, cpf, date);
         if(validateInfo2(registrationNumber, matter, course)){
             this.registrationNumber = registrationNumber;
             this.matter = matter;
@@ -23,7 +23,7 @@ public class Professor extends Person implements Serializable, Comparable<Profes
 
     //Construtor sem parametro
     public Professor(){
-        this(25, "Sem nome", "***********", null, 999l, "Sem materia", "Sem curso");
+        this("Sem nome", "***********", null, 999l, "Sem materia", "Sem curso");
     }//Fim
 
     //Obtem o número de registro do professor
@@ -120,6 +120,6 @@ public class Professor extends Person implements Serializable, Comparable<Profes
     //Metodo toString para retornar os dados do professor para serem impressos
     @Override
     public String toString(){
-        return "Dados do(a) professor(a)\n\n" + super.toString() + "Número de registro: " + registrationNumber + "\nMateria que o(a) professor(a) leciona: " + matter + "\nCurso que leciona: " + course + "\n";
+        return "Dados do(a) professor(a)\n" + super.toString() + "Número de registro: " + registrationNumber + "\nMateria que o(a) professor(a) leciona: " + matter + "\nCurso que leciona: " + course + "\n";
     }//Fim toString
 }//Fim da classe Professor

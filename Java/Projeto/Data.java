@@ -128,6 +128,21 @@ public class Data implements Serializable ,DateInterface{
         }
     }//Fim isPrevious
 
+    public int calculateAge(){
+        setCurrentDate();
+        int d = currentDay;
+        int m = currentMonth;
+        int y = currentYear;
+        int age = y - this.year;
+
+        if(this.month <= m){
+            if(this.day <= d){
+                return age;
+            }
+        }
+        return (age - 1);
+    }
+
     //Retorna verdadeiro se a data passada por paramentro é anterior a data do objeto
     @Override
     public boolean isPrevious(Data outraData){
@@ -203,6 +218,6 @@ public class Data implements Serializable ,DateInterface{
     //Metodo toString para retornar da data por extenso para impressão
     @Override
     public String toString(){
-        return day + " de " + MONTHS[month - 1] + " de " + year;
+        return day + " de " + MONTHS[month - 1] + " de " + year + "\nIdade: " + calculateAge() + "\n";
     }//Fim toString
 }//Fim classe Data
