@@ -82,7 +82,6 @@ public class University{
                 //Pega as indormações
                 System.out.printf("Digite as informações do(a) professor(a)\n\n");
                 System.out.printf("Digite o nome do(a) professor(a): ");
-                //prf.nextLine();
                 String name = prf.nextLine();
                 System.out.printf("Digite o CPF do(a) professor(a): ");
                 String cpf = prf.nextLine();
@@ -175,7 +174,6 @@ public class University{
 
         //Pega as informações
         System.out.printf("Digite o nome do(a) aluno(a): ");
-        //std.nextLine();
         String name = std.nextLine();
         System.out.printf("Digite o CPF do() aluno(a): ");
         String cpf = std.nextLine();
@@ -235,7 +233,6 @@ public class University{
         //Pega as informações
         System.out.printf("Digite as informações do(a) professor(a)\n\n");
         System.out.printf("Digite o nome do(a) professor(a): ");
-        //prf.nextLine();
         String name = prf.nextLine();
         System.out.printf("Digite o CPF do(a) professor(a): ");
         String cpf = prf.nextLine();
@@ -280,7 +277,6 @@ public class University{
 
         //Pega as informações
         System.out.printf("Digite o nome do(a) aluno(a): ");
-        //std.nextLine();
         String name = std.nextLine();
         System.out.printf("Digite o CPF do() aluno(a): ");
         std.nextLine();
