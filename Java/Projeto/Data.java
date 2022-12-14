@@ -128,6 +128,7 @@ public class Data implements Serializable ,DateInterface{
         }
     }//Fim isPrevious
 
+    //Calcula um idade
     public int calculateAge(){
         setCurrentDate();
         int d = currentDay;
@@ -135,13 +136,13 @@ public class Data implements Serializable ,DateInterface{
         int y = currentYear;
         int age = y - this.year;
 
-        if(this.month <= m){
-            if(this.day <= d){
-                return age;
-            }
+        if(m >= this.month){
+            return age;
+        }else if(d >= this.day){
+            return age;
         }
         return (age - 1);
-    }
+    }//Fim calculateAge
 
     //Retorna verdadeiro se a data passada por paramentro é anterior a data do objeto
     @Override

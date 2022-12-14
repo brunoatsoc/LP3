@@ -248,7 +248,7 @@ public class University{
         Data date = new Data(day, month, year);
         System.out.printf("Digite o número de registro do(a) professor(a): ");
         long registrationNumber = prf.nextLong();
-        System.out.printf("Digite a matria que o(a) professor(a) leciona: ");
+        System.out.printf("Digite a matéria que o(a) professor(a) leciona: ");
         prf.nextLine();
         String matter = prf.nextLine();
         System.out.printf("Digite o curso que o(a) professor(a) leciona: ");

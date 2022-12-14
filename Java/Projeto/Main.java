@@ -1,9 +1,10 @@
-import DataStructures.List;
-import DataStructures.Stack;
-import DataStructures.Queue;
-import DataStructures.Tree;
 import java.io.*;
-import java.sql.Struct;
+
+/*
+ * Projeto de Linguagem de Programação 3 e Estrutura de Dados
+ * Professores: Dany e Helder
+ * Alunos: Leonam Rabelo e Bruno Santos Costa
+ */
 
 //Claasse principal(que tem o metodo main)
 public class Main{
