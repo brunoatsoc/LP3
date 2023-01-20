@@ -1,3 +1,5 @@
+package Person;
+
 //Interface para a classe Data
 public interface DateInterface{
     void setDate(int day, int month, int year);

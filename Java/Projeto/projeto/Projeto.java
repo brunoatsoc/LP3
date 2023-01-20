@@ -1,4 +1,7 @@
+package projeto;
+
 import java.io.*;
+import University.*;
 
 /*
  * Projeto de Linguagem de Programação 3 e Estrutura de Dados
@@ -7,14 +10,14 @@ import java.io.*;
  */
 
 //Claasse principal(que tem o metodo main)
-public class Main{
+public class Projeto{
     //Metodo principal
     //Esse metodo chama inicia lendo os arquivos que tem as informações dos lunos e professores
     public static void main(String[] args) throws Exception{
         University u = new University();
         int op = 1;
 
-        //ratamento de excessões
+        //Tratamento de excessões
         try{
             u.readFilesProfessors();
             u.readFileStudents();

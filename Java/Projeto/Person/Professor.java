@@ -1,3 +1,5 @@
+package Person;
+
 import java.io.Serializable;
 
 //Classe para o Professor que implementa a interface Comparable para comparar dois objetos

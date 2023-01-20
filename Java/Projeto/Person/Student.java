@@ -1,3 +1,5 @@
+package Person;
+
 import java.io.Serializable;
 
 //Calees para o Estudante que implementa a classe Comparable para comparar dois objetos

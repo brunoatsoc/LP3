@@ -1,6 +1,9 @@
+package University;
+
 import DataStructures.*;
 import java.io.*;
 import java.io.IOException;
+import Person.*;
 
 //Classe para os cursos da universidade
 public class Course{
@@ -9,7 +12,6 @@ public class Course{
     private static final int waitingList = 30; //Tamnho da lista de espera dos alunos
     private int contWL = 0; //Contador da lista de espera
     private Student[] students = new Student[vacancy + waitingList]; //Vetor para os estudantes da classe
-    //private Student[] waitingStudents = new Student[waitingList]; //Vetor para a lista de espera
     private Queue<Student> queue = new Queue<Student>(); //Fila para os alunos
     private String nameCourse; //Nome do curso
 
@@ -51,18 +53,18 @@ public class Course{
 
     //Remove um estudante e usa uma flila para organizar o vetor
     public int removeStudent(Student std, int last){
-        for(int i = 0; students[i] != null; i++){
+        for(int i = 0; i < last; i++){
             if(students[i].compareTo(std) == 0){
                 students[i] = null;
-            }else if(students[i].compareTo(std) != 0){
-                queue.enqueue(students[i]);
             }else if((students[i] == null) || (i == last)){
                 System.out.printf("Estudante não encontrado!!\n\n");
                 return last;
+            }else{
+                queue.enqueue(students[i]);
             }
         }
 
-        for(int i = 0; i <= last - 1; i++){
+        for(int i = 0; i < last - 1; i++){
             students[i] = queue.dequeue();
         }
         return last - 1;

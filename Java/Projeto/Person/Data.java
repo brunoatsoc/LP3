@@ -1,3 +1,5 @@
+package Person;
+
 //import java.io.Serializable;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -136,9 +138,7 @@ public class Data implements Serializable ,DateInterface{
         int y = currentYear;
         int age = y - this.year;
 
-        if(m >= this.month){
-            return age;
-        }else if(d >= this.day){
+        if((m >= this.month) && (d >= this.day)){
             return age;
         }
         return (age - 1);

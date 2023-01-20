@@ -3,16 +3,6 @@ package DataStructures;
 
 //Classe Queue genérica que herada da lista encadeada também generica
 public class Queue<T extends Comparable<T>> extends List<T>{
-    //Construtor
-    public Queue(T data){
-        setRearList(data);
-    }//Fim
-
-    //Construtor sem parametro
-    public Queue(){
-        setFrontList(null);
-    }//Fim
-
     //Metodo enqueue que coloca um objeto no final da fila
     public void enqueue(T data){
         setRearList(data);

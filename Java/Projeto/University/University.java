@@ -1,6 +1,9 @@
+package University;
+
 import DataStructures.*;
 import java.util.Scanner;
 import java.io.*;
+import Person.*;
 
 //Classe University pra representar a universidade
 public class University{
@@ -279,7 +282,7 @@ public class University{
         System.out.printf("Digite o nome do(a) aluno(a): ");
         String name = std.nextLine();
         System.out.printf("Digite o CPF do() aluno(a): ");
-        std.nextLine();
+        //std.nextLine();
         String cpf = std.nextLine();
         System.out.printf("Digite o dia do nascimento do(a) aluno(a): ");
         int day = std.nextInt();
@@ -321,18 +324,18 @@ public class University{
 
     //Remove um professor e usa uma fila para recolocar os frofessores que estavam atrás dele no vetor no lugar certo
     public int removeProfessor(Professor std){
-        for(int i = 0; professor[i] != null; i++){
+        for(int i = 0; i < counterP; i++){
             if(professor[i].compareTo(std) == 0){
                 professor[i] = null;
-            }else if(professor[i].compareTo(std) != 0){
-                queueProfessor.enqueue(professor[i]);
             }else if((professor[i] == null) || (i == counterP)){
                 System.out.printf("Professor não encontrado!!\n\n");
                 return counterP;
+            }else{
+                queueProfessor.enqueue(professor[i]);
             }
         }
 
-        for(int i = 0; i <= counterP - 1; i++){
+        for(int i = 0; i < counterP - 1; i++){
             professor[i] = queueProfessor.dequeue();
         }
         return counterP - 1;

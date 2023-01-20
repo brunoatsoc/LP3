@@ -1,3 +1,5 @@
+package Person;
+
 import java.io.Serializable;
 
 //Classe pessoa que implementa a interface Serializable para manipular arquivos e a classe PersonInterface

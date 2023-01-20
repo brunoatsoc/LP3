@@ -1,3 +1,5 @@
+package Person;
+
 //Interface da classe Person
 public interface PersonInterface{
     String toString();
